@@ -1,5 +1,7 @@
 ### Dropwizard 0.8.0-rc4 hibernate performance degradation issue
 
+Performance drop from 12k req/sec to 2.2 req/sec.
+
 This repository contains code to demonstrate performance degradation while using hibernate when switching from 0.7.1 dropwizard version to 0.8.0-rc4.
 
 Code is simple app which has 1 resource fetching list of DB entries via Hibernate.
