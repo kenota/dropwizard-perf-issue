@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'gradle-one-jar'
+apply plugin: 'application'
+
+
+mainClassName = 'com.test.HelloWorldApplication'
+
+project.ext {
+    dropwizardVersion = "0.7.1"
+//    dropwizardVersion = "0.8.0-rc4"
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.rholder:gradle-one-jar:1.0.4'
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+task singleJar(type: OneJar, dependsOn: "clean") {
+    mainClass = mainClassName
+    archiveName = 'app.jar'
+}
+
+
+dependencies {
+    compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
+    compile "io.dropwizard:dropwizard-jdbi:$dropwizardVersion"
+    compile "io.dropwizard:dropwizard-migrations:$dropwizardVersion"
+    compile "io.dropwizard:dropwizard-auth:$dropwizardVersion"
+    compile "io.dropwizard:dropwizard-hibernate:$dropwizardVersion"
+
+    compile "com.h2database:h2:1.4.181"
+}
